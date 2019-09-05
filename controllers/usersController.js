@@ -12,7 +12,7 @@ const index = (req, res) => {
     db.User.find({}, { password: 0 }, (err, allUsers) => {
         if (err) return res.status(500).json({ status: 500, message: 'Something went wrong. Please try again' });
 
-        res.status(200).json({ status: 200, data: foundUser });
+        res.status(200).json({ status: 200, data: allUsers });
     });
 };
 

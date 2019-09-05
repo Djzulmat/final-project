@@ -16,9 +16,9 @@ app.use(bodyParser.json());
 // NOTE Custom Logger Middleware
 app.use((req, res, next) => {
     const url = req.url;
-    const method = res.method;
+    const method = req.method;
     const requestedAt = new Date().toLocaleString();
-
+    console.table({ url, method, requestedAt })
     next();
 });
 
@@ -49,10 +49,10 @@ app.use(cors(corsOptions));
 app.get('/', (req, res) => res.send('<h1>Welcome to Appointment API</h1>'));
 
 // NOTE Auth Route
-app.use('api/v1/auth', routes.auth);
+app.use('/api/v1/auth', routes.auth);
 
 //  NOTE Users Route
-app.use('api/v1/users', routes.users);
+app.use('/api/v1/users', routes.users);
 
 
 
