@@ -75,7 +75,17 @@ const login = (req, res) => {
     });
 };
 
+// NOTE POST Logout Route
+const logout = (req, res) => {
+    req.session.destroy(err => {
+        if (err) return res.status(500).json({ status: 500, message: "Somethign went wrong. Please try again"});
+
+        res.sendStatus(200);
+    });
+};
+
 module.exports = {
     register,
-    login
+    login,
+    logout
 };
