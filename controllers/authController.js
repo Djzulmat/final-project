@@ -84,8 +84,18 @@ const logout = (req, res) => {
     });
 };
 
+// NOTE GET Verify Route
+const verify = (req, res) => {
+    // if (!req.session.currentUser) {
+    //     return res.status(401).json({ status: 401, message: "Unauthorized. Please login and try again"});
+    // }
+
+    res.status(200).json({ status: 200, message: `Current user verified. User ID = ${req.session.currentUser.id}`});
+}
+
 module.exports = {
     register,
     login,
-    logout
+    logout,
+    verify
 };
