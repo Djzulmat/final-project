@@ -18,7 +18,18 @@ const createAppointment = (req, res) => {
     });
 };
 
+// NOTE Deleting Appointment
+const deleteAppointment = (req, res) => {
+    db.Appointment.findByIdAndDelete(req.params.id, (err, deletedAppointment) => {
+        if (err) return res.status(500).json({ status: 500, message: err});
+
+        res.send(deletedAppointment);
+    });
+};
+
+
 
 module.exports = {
-    createAppointment
+    createAppointment,
+    deleteAppointment
 }
