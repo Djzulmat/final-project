@@ -3,7 +3,13 @@ const router = express.Router();
 const ctrl = require('../controllers');
 const authRequired = require('../middleware/authRequired');
 
-// NOTE Create a Post Route
+// NOTE Appointment Index
+router.get('/', authRequired, ctrl.appointments.appointmentIndex);
+
+// NOTE Appointment Show
+router.get('/:id', authRequired, ctrl.appointments.appointmentShow);
+
+// NOTE Create Appointment Route
 router.post('/', authRequired, ctrl.appointments.createAppointment);
 
 // NOTE Delete Appointment
