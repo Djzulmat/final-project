@@ -12,11 +12,11 @@ const appointmentSchema = new Schema({
     },
     start_date_time: {
         type: String,
-        required: true
+        // required: true
     },
     end_date_time: {
         type: String,
-        required: true
+        // required: true
     },
     User: {
         type: Schema.Types.ObjectId,

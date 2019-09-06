@@ -54,6 +54,9 @@ app.use('/api/v1/auth', routes.auth);
 //  NOTE Users Route
 app.use('/api/v1/users', routes.users);
 
+// NOTE Appointment Route
+app.use('/api/v1/appointments', routes.appointments);
+
 
 
 

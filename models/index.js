@@ -11,4 +11,5 @@ mongoose.connect(DB_URL, {
 
 module.exports = {
   User: require('./User'),
+  Appointment: require('./Appointment')
 };
