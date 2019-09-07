@@ -1,65 +1,65 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const cors = require('cors');
+const express = require("express");
+const bodyParser = require("body-parser");
+const session = require("express-session");
+const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
-const routes = require('./routes');
+const routes = require("./routes");
+var cookieParser = require("cookie-parser");
 
 // ----------------- MIDDLEWARE ------------------------------ //
 
 // NOTE BodyParser
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 
 // NOTE Custom Logger Middleware
 app.use((req, res, next) => {
-    const url = req.url;
-    const method = req.method;
-    const requestedAt = new Date().toLocaleString();
-    console.table({ url, method, requestedAt })
-    next();
+  const url = req.url;
+  const method = req.method;
+  const requestedAt = new Date().toLocaleString();
+  console.table({ url, method, requestedAt });
+  next();
 });
 
 // NOTE User Session
-app.use(session({
-    secret: "Super Secret",
+app.use(
+  session({
+    secret: "secret key",
     resave: false,
-    // NOTE Only save the session if a property has been added to req.session
-    saveUninitialized: false
-}));
+    saveUninitialized: true,
+    cookie: { secure: true }
+  })
+);
+
+app.use(cookieParser());
 
 const corsOptions = {
-    origin: ["http://localhost:3000"],
-    // NOTE This allows the session cookie to be sent back and forth
-    credentials: true,
-    optionSuccessStatus: 200
+  origin: ["http://localhost:3000"],
+  // NOTE This allows the session cookie to be sent back and forth
+  credentials: true,
+  optionSuccessStatus: 200
 };
 
 app.use(cors(corsOptions));
 
-
-
-
-
 // --------------------- ROUTES ------------------------------ //
 
 // NOTE GET Root Route
-app.get('/', (req, res) => res.send('<h1>Welcome to Appointment API</h1>'));
+app.get("/", (req, res) => res.send("<h1>Welcome to Appointment API</h1>"));
 
 // NOTE Auth Route
-app.use('/api/v1/auth', routes.auth);
+app.use("/api/v1/auth", routes.auth);
 
 //  NOTE Users Route
-app.use('/api/v1/users', routes.users);
+app.use("/api/v1/user/me", routes.user);
 
 // NOTE Appointment Route
-app.use('/api/v1/appointments', routes.appointments);
-
-
-
+app.use("/api/v1/appointments", routes.appointments);
 
 // ----------------- START SERVER ---------------------------- //
 
-app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+app.listen(PORT, () =>
+  console.log(`Server running at http://localhost:${PORT}`)
+);

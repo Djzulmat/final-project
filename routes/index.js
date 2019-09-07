@@ -1,5 +1,5 @@
 module.exports = {
-    auth: require('./auth.js'),
-    users: require('./users.js'),
-    appointments: require('./appointments.js')
+  auth: require("./auth.js"),
+  user: require("./user.js"),
+  appointments: require("./appointments.js")
 };

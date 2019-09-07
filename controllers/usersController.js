@@ -1,22 +1,20 @@
-const db = require('../models');
+const db = require("../models");
 
 const show = (req, res) => {
-    db.User.findById(req.params.id, { password: 0, __v: 0 }, (err, foundUser) => {
-        if (err) return res.status(500).json({ status: 500, message: 'Something went wrong. Please try again' });
+  const cookies = req.cookies;
+  const currentUserId = cookies && cookies.user_id;
 
-        res.status(200).json({ status: 200, data: foundUser });
-    });
-};
+  db.User.findById(currentUserId, { password: 0, __v: 0 }, (err, foundUser) => {
+    if (err)
+      return res.status(500).json({
+        status: 500,
+        message: "Something went wrong. Please try again"
+      });
 
-const index = (req, res) => {
-    db.User.find({}, { password: 0 }, (err, allUsers) => {
-        if (err) return res.status(500).json({ status: 500, message: 'Something went wrong. Please try again' });
-
-        res.status(200).json({ status: 200, data: allUsers });
-    });
+    res.status(200).json({ status: 200, data: foundUser });
+  });
 };
 
 module.exports = {
-    show,
-    index
+  show
 };
