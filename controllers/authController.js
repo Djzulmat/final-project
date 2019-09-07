@@ -24,7 +24,7 @@ const register = (req, res) => {
     if (foundUser)
       return res.status(400).json({
         status: 400,
-        message: "Email address has been taken. Please try again"
+        errors: { email: "Email address has been taken. Please try again" }
       });
 
     // NOTE Generate Salt
@@ -45,23 +45,28 @@ const register = (req, res) => {
 
         // NOTE Create new user object to hold the new user information
         const newUser = {
-          username: req.body.username,
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
           email: req.body.email,
-          password: hash
+          password: hash,
+          role: req.body.role
         };
 
         // NOTE Create a new User record in MongoDB from the newUser object above
         db.User.create(newUser, (err, savedUser) => {
-          if (err) res.send(err);
+          if (err) {
+            console.log(err);
+            return res.status(500).json({
+              status: 500,
+              message: "Something went wrong. Please try again."
+            });
+          } else {
+            res.cookie("user_id", savedUser._id, {
+              path: "/"
+            });
 
-          // req.session.loggedIn = true;
-          // req.session.currentUser = { id: savedUser._id };
-          console.log(savedUser, "savedUser");
-          res.cookie("user_id", savedUser._id, {
-            path: "/"
-          });
-
-          res.send(savedUser);
+            res.send(savedUser);
+          }
         });
       });
     });
@@ -97,10 +102,9 @@ const login = (req, res) => {
         });
 
       if (isMatch) {
-        // NOTE Give permission, authorization
-        req.session.loggedIn = true;
-        req.session.currentUser = { id: foundUser._id };
-
+        res.cookie("user_id", foundUser._id, {
+          path: "/"
+        });
         // return res.status(200).json({ status: 200, message: "Success", id: foundUser._id});
         return res.send(foundUser);
       } else {

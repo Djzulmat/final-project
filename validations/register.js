@@ -1,7 +1,6 @@
 module.exports = ({
   first_name,
   last_name,
-  username,
   email,
   phone,
   date_of_birth,
@@ -16,9 +15,7 @@ module.exports = ({
   // if (!last_name) {
   //     errors.push({ message: "Last name is required"});
   // }
-  if (!username) {
-    errors["username"] = "Username is required";
-  }
+
   if (!email) {
     errors["email"] = "Email is required";
   }
