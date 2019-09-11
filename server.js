@@ -53,7 +53,7 @@ app.get("/", (req, res) => res.send("<h1>Welcome to Appointment API</h1>"));
 app.use("/api/v1/auth", routes.auth);
 
 //  NOTE Users Route
-app.use("/api/v1/user/me", routes.user);
+app.use("/api/v1/user", routes.user);
 
 // NOTE Appointment Route
 app.use("/api/v1/appointments", routes.appointments);

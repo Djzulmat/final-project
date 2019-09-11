@@ -15,6 +15,15 @@ const show = (req, res) => {
   });
 };
 
+const doctors = (req, res) => {
+  db.User.find({ role: "doctor" }, (err, allUsers) => {
+    if (err) return res.status(400).json({ status: 400, message: err });
+
+    res.send(allUsers);
+  });
+};
+
 module.exports = {
-  show
+  show,
+  doctors
 };

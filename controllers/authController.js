@@ -64,6 +64,9 @@ const register = (req, res) => {
             res.cookie("user_id", savedUser._id, {
               path: "/"
             });
+            res.cookie("role", savedUser.role, {
+              path: "/"
+            });
 
             res.send(savedUser);
           }
@@ -105,6 +108,9 @@ const login = (req, res) => {
         res.cookie("user_id", foundUser._id, {
           path: "/"
         });
+        res.cookie("role", foundUser.role, {
+          path: "/"
+        });
         // return res.status(200).json({ status: 200, message: "Success", id: foundUser._id});
         return res.send(foundUser);
       } else {
@@ -121,8 +127,7 @@ const logout = (req, res) => {
   console.log("I am  loggin gout");
   req.session = null;
   res.clearCookie("user_id", { path: "/" });
-
-  console.log(req.cookies.user_id);
+  res.clearCookie("role", { path: "/" });
 
   res.sendStatus(200);
   // req.session.destroy(err => {
