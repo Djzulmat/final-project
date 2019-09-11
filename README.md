@@ -1,4 +1,10 @@
-# final-project
+# Final-Project
+### Link to Github
+https://github.com/Djzulmat/final-project
+
+https://github.com/Djzulmat/final-project-frontend
+
+
 #### What is Doctr?
 
 - Doctr is an appointment scheduling app. Users are allowed to register either as a Doctor or Patient. Patients have an option to create, edit and delete their own appointments. Doctors have an option either to accept or cancel the appointment.
