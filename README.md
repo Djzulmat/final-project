@@ -23,6 +23,24 @@
 
 
 -------------------------------------------------------------------------------------------
+#### Wireframes
+- Home Page
+<img width="1127" alt="Screen Shot 2019-09-10 at 6 15 00 PM" src="https://user-images.githubusercontent.com/13546925/64718760-b38dee80-d47b-11e9-8203-c7ec7f3b90d6.png">
+
+- Login Page
+<img width="1148" alt="Screen Shot 2019-09-11 at 9 41 59 AM" src="https://user-images.githubusercontent.com/13546925/64718830-d15b5380-d47b-11e9-9e8b-5f82dcd7f7ec.png">
+
+- Register Page
+<img width="1148" alt="Screen Shot 2019-09-11 at 10 07 30 AM" src="https://user-images.githubusercontent.com/13546925/64718939-0ff10e00-d47c-11e9-8b06-f61de2145e67.png">
+
+- Appointments Page for Patient
+<img width="1310" alt="Screen Shot 2019-09-11 at 10 09 19 AM" src="https://user-images.githubusercontent.com/13546925/64719010-42027000-d47c-11e9-9d9d-595a7a30dc67.png">
+
+- Appointments Page for Doctor
+<img width="1316" alt="Screen Shot 2019-09-11 at 10 11 16 AM" src="https://user-images.githubusercontent.com/13546925/64719167-8988fc00-d47c-11e9-9051-124e70b0753d.png">
+
+
+
 
 
 #### Instructors
